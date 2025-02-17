@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "BReels",
+  "version": "1.0",
+  "description": "Blocks Facebook Reels from appearing on the feed.",
+  "permissions": ["scripting"],
+  "host_permissions": ["https://www.facebook.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/*"],
+      "js": ["index.js"],
+      "css": ["style.css"]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+/* Completely remove the Reels section */
+div[aria-label="Reels"],
+a[href*="/reels/"],
+div[aria-label="See more"],
+div[role="complementary"] div[aria-label="Reels"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hide suggested posts with a "Follow" button */
+div[role="article"]:has(a[role="link"]:contains("Follow")) {
+  display: none !important;
+}
