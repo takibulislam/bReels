@@ -1,14 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Personal Assistant",
-  "version": "2.1",
-  "description": "Block distractions and boost productivity on social media and Upwork.",
-  "permissions": ["storage", "scripting", "tabs"],
+  "version": "2.2",
+  "description": "Block distracting feeds on social media.",
+  "permissions": ["storage", "scripting"],
   "host_permissions": [
     "*://*.facebook.com/*",
     "*://*.instagram.com/*",
-    "*://*.youtube.com/*",
-    "*://*.upwork.com/*"
+    "*://*.youtube.com/*"
   ],
   "action": {
     "default_popup": "popup.html",
@@ -23,8 +22,7 @@
       "matches": [
         "*://*.facebook.com/*",
         "*://*.instagram.com/*",
-        "*://*.youtube.com/*",
-        "*://*.upwork.com/*"
+        "*://*.youtube.com/*"
       ],
       "js": ["content.js"],
       "run_at": "document_start"
