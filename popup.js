@@ -2,6 +2,7 @@ const DEFAULT_SETTINGS = {
   enabled: true,
   fbReels: true,
   fbFeed: false,
+  fbBlockAll: false,
   igReels: true,
   igExplore: false,
   ytShorts: true,

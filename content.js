@@ -2,6 +2,7 @@ const DEFAULT_SETTINGS = {
   enabled: true,
   fbReels: true,
   fbFeed: false,
+  fbBlockAll: false,
   igReels: true,
   igExplore: false,
   ytShorts: true,
@@ -18,9 +19,37 @@ function getSite() {
   return null;
 }
 
+let pageBlocked = false;
+
+function blockPage() {
+  if (pageBlocked) return;
+  pageBlocked = true;
+  // Stop any further loading and replace the page with a block screen.
+  window.stop();
+  document.documentElement.innerHTML = `
+    <head><title>Facebook blocked</title></head>
+    <body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;
+                 background:#0f1115;color:#f2f3f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+      <div style="text-align:center;padding:16px;">
+        <h1 style="font-size:22px;margin:0 0 8px;">Facebook is blocked</h1>
+        <p style="margin:0;color:#8b8f98;font-size:14px;">Turn off "Block Facebook Completely" in Personal Assistant to browse again.</p>
+      </div>
+    </body>`;
+}
+
 function applyRules() {
   const site = getSite();
   if (!site) return;
+
+  if (site === 'fb' && settings.enabled && settings.fbBlockAll) {
+    blockPage();
+    return;
+  }
+  if (pageBlocked) {
+    // Block was just turned off — reload to restore the real page.
+    location.reload();
+    return;
+  }
 
   let styleEl = document.getElementById('pa-style');
   if (!styleEl) {
